@@ -46,8 +46,17 @@ public class PlayerMovement : MonoBehaviour
     // hay equivalentes en collider
     private void OnCollisionEnter(Collision collision)
     {
-        Debug.Log( "estas chocando con el objeto: "+collision.transform.tag); 
+        Debug.Log( "estas chocando con el objeto: "+ collision.gameObject.tag); 
         if(collision.transform.tag == "Portal")
+        {
+            Debug.Log("Y este componente cambia de tamanio");
+        }
+    }
+
+    private void OnTriggerEnter(Collider collider)
+    {
+        Debug.Log("estas chocando con el objeto: " + collider.gameObject.tag);
+        if (collider.transform.tag == "Portal")
         {
             Debug.Log("Y este componente cambia de tamanio");
         }

@@ -14,7 +14,7 @@ public class GoldenWallBehaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        
     }
 
 
@@ -22,7 +22,6 @@ public class GoldenWallBehaviour : MonoBehaviour
     {
         
         time += Time.deltaTime;
-        Debug.Log(time);
         if (time > 2f)
         {
             collision.transform.transform.position = new Vector3(Random.Range(0f, 10f), Random.Range(0f, 10f), Random.Range(0f, 10f));

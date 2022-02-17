@@ -32,7 +32,6 @@ public class PortalBehaviour : MonoBehaviour
         //The length of the vector is square root of(x * x + y * y + z * z)
         if (collider.transform.localScale.sqrMagnitude <= 3)
         {
-            Debug.Log("dentro del true");
             collider.transform.localScale = Vector3.one *2;
         }
         else
