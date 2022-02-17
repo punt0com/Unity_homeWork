@@ -7,7 +7,7 @@ public class PlayerMovement : MonoBehaviour
     // Start is called before the first frame update
 
     [SerializeField] float playerSpeed = 1.5f;
-
+    [SerializeField] 
     float cameraAxisX = 0f;
     float cameraAxisY = 0f;
     void Start()
@@ -18,7 +18,13 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        MovePlayerToLocation();
         RotatePlayer();
+        Jump();
+
+    }
+
+    void MovePlayerToLocation(){
         if (Input.GetKey(KeyCode.W))
         {
             PlayerInput(Vector3.right);
@@ -36,31 +42,37 @@ public class PlayerMovement : MonoBehaviour
             PlayerInput(Vector3.back);
         }
 
-        if (Input.GetKey(KeyCode.Space))
-        {
-            PlayerInput(Vector3.up*3);
-        }
-        
-            
-        
-
-
-
     }
+    // hay equivalentes en collider
+    private void OnCollisionEnter(Collision collision)
+    {
+        Debug.Log( "estas chocando con el objeto: "+collision.transform.tag); 
+        if(collision.transform.tag == "Portal")
+        {
+            Debug.Log("Y este componente cambia de tamanio");
+        }
+    }
+    void RotatePlayer()
+    {
+
+        cameraAxisX += Input.GetAxis("Mouse X");
+        cameraAxisY += Input.GetAxis("Mouse Y");
+        Quaternion quaternion = Quaternion.Euler(0, cameraAxisX, cameraAxisY);
+        transform.localRotation = quaternion;
+    }
+
     void PlayerInput(Vector3 movement)
     {
         transform.Translate(movement * Time.deltaTime * playerSpeed);
 
     }
 
-    void RotatePlayer()
+    void Jump()
     {
-        
-        cameraAxisX += Input.GetAxis("Mouse X");
-        cameraAxisY += Input.GetAxis("Mouse Y");
-
-        Quaternion quaternion = Quaternion.Euler(0,cameraAxisX, cameraAxisY);
-        transform.localRotation = quaternion;
+        if (Input.GetKey(KeyCode.Space))
+        {
+            PlayerInput(Vector3.up * 3);
+        }
     }
 }
 
