@@ -22,13 +22,18 @@ public class EnemyBehaviour : MonoBehaviour
     {
         switch (behaviour)
         {
+
+            case behaviours.follow:
+                FollowPlayer();
+                break;
             case behaviours.look:
                 LookAt();
                 break;
             case behaviours.lookLerp:
                 LookAtLerp();
                 break;
-            case behaviours.follow:
+          
+            default:
                 FollowPlayer();
                 break;
         }
