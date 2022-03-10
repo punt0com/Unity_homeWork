@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -22,6 +23,11 @@ public class PlayerMovement : MonoBehaviour
         RotatePlayer();
         Jump();
 
+    }
+
+    private void FixedUpdate()
+    {
+        
     }
 
     void MovePlayerToLocation(){
@@ -51,6 +57,12 @@ public class PlayerMovement : MonoBehaviour
         {
             Debug.Log("Y este componente cambia de tamanio");
         }
+    }
+
+    private void OnGameOver()
+    {
+        SceneManager.LoadScene("SampleScene");
+        
     }
 
     private void OnTriggerEnter(Collider collider)
