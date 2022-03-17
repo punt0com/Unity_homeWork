@@ -22,7 +22,6 @@ public class EnemyBehaviour : MonoBehaviour
     {
         switch (behaviour)
         {
-
             case behaviours.follow:
                 FollowPlayer();
                 break;

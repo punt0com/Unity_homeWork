@@ -12,6 +12,7 @@ public class CannonShooter : MonoBehaviour
     //[SerializeField] float delay = 2f;
     //[SerializeField] float destroyDelay = 2f;
     [SerializeField] GameObject bullet;
+    [SerializeField] Transform shootLocation;
     
     GameObject instanciatedbullet;
 
@@ -55,7 +56,8 @@ public class CannonShooter : MonoBehaviour
     {
 
         //entiendo que quaternion es para angulos, la verdad es que no le se solo agarre el ejemplo de la documentacion oficial de unity y sin el quaternion el insetar un Vector3 no funciona
-        instanciatedbullet = Instantiate(bullet, transform);
+        //instanciatedbullet = Instantiate(bullet, shootLocation.transform);
+        instanciatedbullet = Instantiate(bullet, shootLocation.transform.position, shootLocation.transform.rotation);
 
 
     }

@@ -6,13 +6,13 @@ public class CannonMovement : MonoBehaviour
 {
     // Start is called before the first frame update
 
-    [SerializeField] Vector3 direction = new Vector3();
+    Vector3 direction = new Vector3();
     [SerializeField] float speed = 3f;
     //[SerializeField] float damage = 5f;
     void Start()
     {
         //InvokeRepeating
-        Invoke("DestroyBullet", 3f);
+        Invoke("DestroyBullet", 5f);
     }
 
     // Update is called once per frame
@@ -24,7 +24,7 @@ public class CannonMovement : MonoBehaviour
     private void Move(Vector3 direction)
     {
 
-        transform.Translate(direction * Time.deltaTime * speed);
+        transform.Translate((Vector3.back * 3)* Time.deltaTime * speed);
     }
 
     void DestroyBullet()

@@ -15,6 +15,7 @@ public class PlayerMovement : MonoBehaviour
     bool canJump = false;
 
     List<string> ItemList = new List<string>();
+    List<string> PowerUp = new List<string>();
 
     Dictionary<string, GameObject> powerUps = new Dictionary<string, GameObject>();
 
@@ -44,19 +45,19 @@ public class PlayerMovement : MonoBehaviour
 
         if (Input.GetKey(KeyCode.W))
         {
-            PlayerInput(Vector3.right);
+            PlayerInput(Vector3.back);
         }
         if (Input.GetKey(KeyCode.A))
         {
-            PlayerInput(Vector3.forward);
+            PlayerInput(Vector3.right);
         }
         if (Input.GetKey(KeyCode.S))
         {
-            PlayerInput(Vector3.left);
+            PlayerInput(Vector3.forward);
         }
         if (Input.GetKey(KeyCode.D))
         {
-            PlayerInput(Vector3.back);
+            PlayerInput(Vector3.left);
         }
 
     }
@@ -68,11 +69,16 @@ public class PlayerMovement : MonoBehaviour
         {
             canJump = true;
         }
-        if (collision.transform.tag == "Item")
-        {
-            ItemList.Add(collision.gameObject.tag);
-        }
+     
 
+    }
+
+    private void OnCollisionStay(Collision collision)
+    {
+        if (collision.transform.tag == "Floor")
+        {
+            canJump = true;
+        }
 
     }
 
@@ -86,10 +92,8 @@ public class PlayerMovement : MonoBehaviour
 
     void PlayerInput(Vector3 movement)
     {
-        //transform.Translate(movement * Time.deltaTime * playerSpeed, Space.World);
         transform.Translate(movement * Time.deltaTime * playerSpeed);
-
-
+        //transform.Translate(movement * Time.deltaTime * playerSpeed
         //ayuda con esta parte que no se girar hacia la dirrecion correcta 
         //moveHorizontal = Input.GetAxis("Horizontal");
         //moveVertical = Input.GetAxis("Vertical");
@@ -99,11 +103,20 @@ public class PlayerMovement : MonoBehaviour
         //transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(movement), 0.75F);
     }
 
+    void RotatePlayer()
+    {
+
+        cameraAxisX += Input.GetAxis("Mouse X");
+        //cameraAxisY += Input.GetAxis("Mouse Y");
+        Quaternion quaternion = Quaternion.Euler(0, cameraAxisX, cameraAxisY);
+        transform.localRotation = quaternion;
+    }
+
     void Jump()
     {
         if (Input.GetKey(KeyCode.Space) && canJump == true)
         {
-            transform.Translate((Vector3.up * 3) * Time.deltaTime * playerSpeed);
+            transform.Translate((Vector3.up * 10) * Time.deltaTime * 1);
 
         }
     }
@@ -116,34 +129,17 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnTriggerEnter(Collider collider)
     {
-        Debug.Log("estas chocando con el objeto: " + collider.gameObject.tag);
-        if (collider.transform.tag == "Portal")
+        if (collider.transform.tag == "Item")
         {
-            Debug.Log("Y este componente cambia de tamanio");
-        }
-        if (collider.transform.tag == "PowerUp")
-        {
-            if (powerUps.ContainsKey("start"))
-            {
-                playerSpeed = 5;
-            }
-            else
-            {
-                powerUps.Add("star", collider.gameObject);
-                playerSpeed += 3;
-            }
 
+            GameManager.instance.gems[(int)collider.gameObject.GetComponent<GemType>().gemType]++;
+            ItemList.Add(collider.gameObject.tag);
+
+            collider.transform.gameObject.SetActive(false);
         }
 
     }
-    void RotatePlayer()
-    {
 
-        cameraAxisX += Input.GetAxis("Mouse X");
-        cameraAxisY += Input.GetAxis("Mouse Y");
-        Quaternion quaternion = Quaternion.Euler(0, cameraAxisX, cameraAxisY);
-        transform.localRotation = quaternion;
-    }
 
 
 }

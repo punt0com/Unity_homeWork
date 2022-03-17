@@ -13,12 +13,13 @@ GameObject:
   - component: {fileID: 23000010455495602}
   - component: {fileID: 3107004174181298937}
   - component: {fileID: 2777927982010696250}
+  - component: {fileID: 1608725691}
   m_Layer: 0
   m_Name: 4 Side Diamond
-  m_TagString: Untagged
+  m_TagString: Item
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &4000012861777782
 Transform:
@@ -61,7 +62,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 932bfbb102946e04796ee9ade9385119, type: 2}
+  - {fileID: 2100000, guid: 6a6944f4904547e4fb039789da5fcd85, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -109,3 +110,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5b2466f22b6f944682c06c03533565d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1608725691
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1000011841440206}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: adb4721e8962c8b45abe6817f3916b65, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gemType: 0

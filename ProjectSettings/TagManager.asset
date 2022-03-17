@@ -6,6 +6,9 @@ TagManager:
   tags:
   - Wall
   - Portal
+  - Floor
+  - Item
+  - PowerUp
   layers:
   - Default
   - TransparentFX
