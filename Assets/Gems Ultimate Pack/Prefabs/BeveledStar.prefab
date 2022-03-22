@@ -12,9 +12,10 @@ GameObject:
   - component: {fileID: 33000010525198182}
   - component: {fileID: 23000011854226900}
   - component: {fileID: 8560808350720702061}
+  - component: {fileID: 432052116}
   m_Layer: 0
   m_Name: BeveledStar
-  m_TagString: Untagged
+  m_TagString: Item
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -96,3 +97,15 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: fce0ecff534816b49af71ef31033c259, type: 3}
+--- !u!114 &432052116
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1000012510692222}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5b2466f22b6f944682c06c03533565d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -15,7 +15,7 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        if(instance == null)
+        if (instance == null)
         {
             instance = this;
             DontDestroyOnLoad(gameObject);
@@ -26,14 +26,23 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
         }
     }
-    void Start()
-    {
 
+    public event Action onNearDoorTriggerEnter;
+    public void DoorTriggerEnter()
+    {
+        onNearDoorTriggerEnter();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
 
+    public event Action onNearDoorTriggerExit;
+    public void DoorTriggerExit()
+    {
+        onNearDoorTriggerExit();
+    }
+
+    public event Action<string> onPowerUpPickUp;
+    public void PowerUpPickUp(string test)
+    {
+        onPowerUpPickUp(test);
     }
 }

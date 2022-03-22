@@ -7,19 +7,29 @@ public class PickUpBehavaiour : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        GameManager.instance.onPowerUpPickUp += PowerUpGotten;
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag == "Player") {
+        if (collision.gameObject.tag == "Player")
+        {
             gameObject.SetActive(false);
         }
     }
+
+    private void OnTriggerEnter(Collider collider)
+    {
+        if (collider.gameObject.tag == "Player")
+        {
+            GameManager.instance.PowerUpPickUp("pito");
+        }
+    }
+
+    private void PowerUpGotten(string gameObject)
+    {
+        Debug.Log(gameObject);
+        GameManager.instance.PowerUpPickUp(gameObject);
+    }
+
 }

@@ -34,9 +34,35 @@ public class PlayerMovement : MonoBehaviour
 
     }
 
-    private void FixedUpdate()
+    void PlayerInput(Vector3 movement)
+    {
+        transform.Translate(movement * Time.deltaTime * playerSpeed);
+        //transform.Translate(movement * Time.deltaTime * playerSpeed
+        //ayuda con esta parte que no se girar hacia la dirrecion correcta 
+        //moveHorizontal = Input.GetAxis("Horizontal");
+        //moveVertical = Input.GetAxis("Vertical");
+        //Vector3 rotation = new Vector3(moveHorizontal, 0.0f, moveVertical);
+        //rotation.Normalize();
+
+        //transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(movement), 0.75F);
+    }
+
+    void RotatePlayer()
     {
 
+        cameraAxisX += Input.GetAxis("Mouse X");
+        //cameraAxisY += Input.GetAxis("Mouse Y");
+        Quaternion quaternion = Quaternion.Euler(0, cameraAxisX, cameraAxisY);
+        transform.localRotation = quaternion;
+    }
+
+    void Jump()
+    {
+        if (Input.GetKey(KeyCode.Space) && canJump == true)
+        {
+            transform.Translate((Vector3.up * 100) * Time.deltaTime * 1);
+
+        }
     }
 
     void MovePlayerToLocation()
@@ -84,48 +110,9 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnCollisionExit(Collision collision)
     {
-        Debug.Log(collision);
         canJump = false;
     }
 
-
-
-    void PlayerInput(Vector3 movement)
-    {
-        transform.Translate(movement * Time.deltaTime * playerSpeed);
-        //transform.Translate(movement * Time.deltaTime * playerSpeed
-        //ayuda con esta parte que no se girar hacia la dirrecion correcta 
-        //moveHorizontal = Input.GetAxis("Horizontal");
-        //moveVertical = Input.GetAxis("Vertical");
-        //Vector3 rotation = new Vector3(moveHorizontal, 0.0f, moveVertical);
-        //rotation.Normalize();
-
-        //transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(movement), 0.75F);
-    }
-
-    void RotatePlayer()
-    {
-
-        cameraAxisX += Input.GetAxis("Mouse X");
-        //cameraAxisY += Input.GetAxis("Mouse Y");
-        Quaternion quaternion = Quaternion.Euler(0, cameraAxisX, cameraAxisY);
-        transform.localRotation = quaternion;
-    }
-
-    void Jump()
-    {
-        if (Input.GetKey(KeyCode.Space) && canJump == true)
-        {
-            transform.Translate((Vector3.up * 10) * Time.deltaTime * 1);
-
-        }
-    }
-
-    private void OnGameOver()
-    {
-        SceneManager.LoadScene("SampleScene");
-
-    }
 
     private void OnTriggerEnter(Collider collider)
     {
@@ -139,6 +126,9 @@ public class PlayerMovement : MonoBehaviour
         }
 
     }
+
+
+
 
 
 
